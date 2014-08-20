@@ -11,11 +11,14 @@ module Rapidfire
 
       if @answer_group_builder.save
         flash[:success] = "Your answers were submitted successfully!"
-        flash.keep(:error)
-        redirect_to question_groups_path
+        flash.keep(:success)
+        UserMailer.survey_completed(@answer_group_builder).deliver
+        redirect_to main_app.user_path(current_user)
       else
-        flash[:error] = @answer_group_builder.to_model.errors[:user].first #gets error message from model
-        flash.keep(:error)
+        if @answer_group_builder.to_model.errors[:user].present? #the user error only comes up if the form input is validated
+          flash[:error] = @answer_group_builder.to_model.errors[:user].first #gets error message from model
+        end
+        #flash.keep(:error)
         render :new
       end
     end
