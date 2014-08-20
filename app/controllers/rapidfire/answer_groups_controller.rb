@@ -14,7 +14,7 @@ module Rapidfire
         flash.keep(:error)
         redirect_to question_groups_path
       else
-        flash[:error] = a.to_model.errors.full_messages.first #gets error message from model
+        flash[:error] = @answer_group_builder.to_model.errors.full_messages.first #gets error message from model
         flash.keep(:error)
         render :new
       end
