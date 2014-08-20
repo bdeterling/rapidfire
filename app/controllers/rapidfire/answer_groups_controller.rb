@@ -10,8 +10,12 @@ module Rapidfire
       @answer_group_builder = AnswerGroupBuilder.new(answer_group_params)
 
       if @answer_group_builder.save
+        flash[:success] = "Your answers were submitted successfully!"
+        flash.keep(:error)
         redirect_to question_groups_path
       else
+        flash[:error] = "We're but there was an error"
+        flash.keep(:error)
         render :new
       end
     end
