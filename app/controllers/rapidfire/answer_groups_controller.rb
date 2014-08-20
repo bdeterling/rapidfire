@@ -7,6 +7,7 @@ module Rapidfire
     end
 
     def create
+      binding.pry
       @answer_group_builder = AnswerGroupBuilder.new(answer_group_params)
 
       if @answer_group_builder.save
