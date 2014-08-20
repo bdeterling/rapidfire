@@ -14,7 +14,7 @@ module Rapidfire
         flash.keep(:error)
         redirect_to question_groups_path
       else
-        flash[:error] = "We're but there was an error"
+        flash[:error] = "We're but there was an error. Please contact info@hearingtracker.com for assistance."
         flash.keep(:error)
         render :new
       end
