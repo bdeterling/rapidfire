@@ -3,11 +3,15 @@ module Rapidfire
     before_filter :find_question_group!
 
     def new
-      @answer_group_builder = AnswerGroupBuilder.new(answer_group_params)
+      @answer_group_builder = AnswerGroupBuilder.new(answer_group_params, false)
+    end
+
+    def show
+      @answer_group_builder = AnswerGroupBuilder.new([answer_group_params, params[:id]], true)
     end
 
     def create
-      @answer_group_builder = AnswerGroupBuilder.new(answer_group_params)
+      @answer_group_builder = AnswerGroupBuilder.new(answer_group_params, false)
 
       if @answer_group_builder.save
         flash[:success] = "Your answers were submitted successfully!"
