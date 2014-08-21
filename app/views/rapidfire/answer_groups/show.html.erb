@@ -1,7 +1,7 @@
 <h2>Please answer these Questions</h2>
 <hr/>
 
-<%= form_for([@question_group, @answer_group_builder]) do |f| %>
+<%= form_for([@question_group, @answer_group_builder], html: {class: 'rapidfire-survey'}) do |f| %>
   <%- @answer_group_builder.answers.each do |answer| %>
     <%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
       <%= render_answer_form_helper(answer, answer_form) %>
@@ -11,5 +11,6 @@
 
 <script>
   $(":input").prop("disabled", true);
-  $("input:checked").closest('label').css({color:'red'})
+  $("input:checkbox:not(:checked)").closest('label').css({color:'red'})
+  $('input[type=radio][value="No"]').closest('label').css({color:'red'})
 </script>

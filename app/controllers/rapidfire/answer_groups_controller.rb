@@ -27,6 +27,14 @@ module Rapidfire
       end
     end
 
+    def destroy
+      answer_group = AnswerGroup.find(params[:id])
+      if answer_group.destroy
+        flash[:success] = "Deleted!"
+      end
+      redirect_to :back
+    end
+
     private
     def find_question_group!
       @question_group = QuestionGroup.find(params[:question_group_id])
