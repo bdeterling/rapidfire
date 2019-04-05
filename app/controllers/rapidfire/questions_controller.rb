@@ -1,10 +1,10 @@
 module Rapidfire
   class QuestionsController < Rapidfire::ApplicationController
-    before_filter :authenticate_administrator!
+    before_action :authenticate_administrator!
     respond_to :html, :js
 
-    before_filter :find_question_group!
-    before_filter :find_question!, :only => [:edit, :update, :destroy]
+    before_action :find_question_group!
+    before_action :find_question!, :only => [:edit, :update, :destroy]
 
     def index
       @questions = @question_group.questions
