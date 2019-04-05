@@ -1,6 +1,6 @@
 module Rapidfire
   class AnswerGroupsController < Rapidfire::ApplicationController
-    before_filter :find_question_group!
+    before_action :find_question_group!
 
     def new
       @answer_group_builder = AnswerGroupBuilder.new(answer_group_params, false)
